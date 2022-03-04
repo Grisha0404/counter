@@ -28,7 +28,7 @@ function App() {
         }
     }, [])
     useEffect(() => {
-        let startTitleString = localStorage.getItem('counter2')
+        let startTitleString = localStorage.getItem('counter')
         if (startTitleString) {
             setMaxTitle(JSON.parse(startTitleString))
         }
@@ -37,7 +37,7 @@ function App() {
         localStorage.setItem('counter', JSON.stringify(maxTitle))
     }, [maxTitle])
     useEffect(() => {
-        localStorage.setItem('counter2', JSON.stringify(setStartTitle))
+        localStorage.setItem('counter', JSON.stringify(setStartTitle))
     }, [startTitle])
 
 
