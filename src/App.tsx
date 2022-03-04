@@ -22,7 +22,7 @@ function App() {
         setStartTitle(JSON.parse(e.currentTarget.value))
     }
     useEffect(() => {
-        let maxTitleString = localStorage.getItem('counter')
+        let maxTitleString = localStorage.getItem('counter1')
         if (maxTitleString) {
             setMaxTitle(JSON.parse(maxTitleString))
         }
@@ -30,14 +30,14 @@ function App() {
     useEffect(() => {
         let startTitleString = localStorage.getItem('counter')
         if (startTitleString) {
-            setMaxTitle(JSON.parse(startTitleString))
+            setStartTitle(JSON.parse(startTitleString))
         }
     }, [])
     useEffect(() => {
-        localStorage.setItem('counter', JSON.stringify(maxTitle))
+        localStorage.setItem('counter1', JSON.stringify(maxTitle))
     }, [maxTitle])
     useEffect(() => {
-        localStorage.setItem('counter', JSON.stringify(setStartTitle))
+        localStorage.setItem('counter', JSON.stringify(startTitle))
     }, [startTitle])
 
 
