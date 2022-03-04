@@ -1,11 +1,12 @@
 .App{
-  display: flex;
   margin-left: 500px;
   margin-right: 690px;
   background-color: darkcyan;
   margin-top: 15%;
   padding: 10px;
   border: 2px solid aquamarine;
+  border-radius: 10px;
+  color: darkslategrey ;
 }
 
 .Number{
@@ -19,16 +20,16 @@
 }
 .buttonRes{
   background-color: lightskyblue;
-  border: 0px;
+  border: 0;
   border-radius: 5px;
   margin-left: 50px;
 }
 .buttonInc{
   background-color: lightskyblue;
-  border: 0px;
+  border: 0;
   border-radius: 5px;
   margin-left: 10px;
-  margin-right: 0px;
+  margin-right: 0;
 }
 .button{
   border-radius: 5px;
