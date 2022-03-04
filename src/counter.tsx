@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button} from "./button";
 
-export const Counter = () => {
-    let [number, setNumber] = useState<number>(0)
+type CounterType = {
+    number: number
+    clickInc: () => void
+    clickReset: () => void
+    maxTitle: number
+    startTitle: number
+}
 
-    const clickInc = () => {
-        setNumber(++number)
-    }
-    const clickReset = () => {
-        setNumber(0)
-    }
+export const Counter: React.FC<CounterType> = ({number, clickReset, clickInc, maxTitle, startTitle}) => {
 
     return (
-        <div >
-            <div className={number===5 ? 'red':'Number'}>{number}</div>
-            <Button number={number} clickInc={clickInc} clickReset={clickReset}/>
+        <div className={'App'}>
+            <div className={number === maxTitle ? 'red' : 'Number'}>{number}</div>
+            <Button number={number} startTitle={startTitle} maxTitle={maxTitle} clickInc={clickInc} clickReset={clickReset}/>
         </div>
     );
 };
