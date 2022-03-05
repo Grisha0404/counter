@@ -14,7 +14,9 @@ function App() {
     const clickReset = () => {
         setNumber(startTitle)
     }
+    const clickSet = ()=>{
 
+    }
     const onChangeMaxTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setMaxTitle(JSON.parse(e.currentTarget.value))
     }
@@ -47,6 +49,7 @@ function App() {
                      clickReset={clickReset}/>
             <SetCounter maxTitle={maxTitle} startTitle={startTitle} onChangeMaxTitleHandler={onChangeMaxTitleHandler}
                         onChangeStartTitleHandler={onChangeStartTitleHandler}/>
+            <button onClick={clickSet}>set</button>
         </div>
     );
 }
