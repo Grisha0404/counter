@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 
 type SetCounterType = {
     maxTitle: number
@@ -17,12 +17,12 @@ export const SetCounter: React.FC<SetCounterType> = ({
     return (
         <div>
             <div>
-                <b style={{color: 'darkslategrey'}}>max value:</b>
-                <input type={"number"} value={maxTitle} onChange={onChangeMaxTitleHandler}/>
+                <b style={{color: 'darkslategrey'}}>max value :</b>
+                <input style={{width: 40, marginLeft:'10px'}} type={"number"} min={0} value={maxTitle} onChange={onChangeMaxTitleHandler}/>
             </div>
             <div>
                 <b style={{color: 'darkslategrey'}}>start value:</b>
-                <input type={"number"} value={startTitle} onChange={onChangeStartTitleHandler}/>
+                <input style={{width: 40, marginLeft:'10px'}} min={0} type={"number"} value={startTitle} onChange={onChangeStartTitleHandler}/>
             </div>
         </div>
     );
