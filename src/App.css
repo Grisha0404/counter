@@ -1,8 +1,7 @@
 .App{
-  margin-left: 500px;
-  margin-right: 690px;
+  display: inline-block;
+  margin: 50px;
   background-color: darkcyan;
-  margin-top: 15%;
   padding: 10px;
   border: 2px solid aquamarine;
   border-radius: 10px;
@@ -18,24 +17,25 @@
   width: 150px;
   border-radius: 5px;
 }
-.buttonRes{
+
+.button button {
+  border-color: teal;
   background-color: lightskyblue;
-  border: 0;
-  border-radius: 5px;
-  margin-left: 50px;
+  margin: 5px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 .buttonInc{
-  background-color: lightskyblue;
-  border: 0;
   border-radius: 5px;
-  margin-left: 10px;
-  margin-right: 0;
-}
-.button{
-  border-radius: 5px;
-  padding: 5px;
   border: 2px solid aquamarine;
+  margin-left: 15px;
+  display: inline-block;
 }
+.button button:hover {
+  background-color: teal; /* Green */
+  color: white;
+}
+
 .red{
   color: red;
   background-color: lightskyblue;
