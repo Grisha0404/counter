@@ -1,18 +1,19 @@
 import React from 'react';
 
 type ButtonType = {
-    number: number
-    clickInc: () => void
-    clickReset: () => void
-    maxTitle: number
-    startTitle: number
+    name: string
+    callBack: () => void
+    disable:boolean
 }
 
-export const Button: React.FC<ButtonType> = ({number, clickInc, clickReset, maxTitle, startTitle}) => {
+export const Button: React.FC<ButtonType> = ({name, callBack, disable}) => {
+
+    const onClickHandler = () => {
+        callBack()
+    }
     return (
         <div className="button">
-            <button className="buttonInc" disabled={number === maxTitle} onClick={clickInc}>inc</button>
-            <button className="buttonRes" disabled={number === startTitle} onClick={clickReset}>reset</button>
+            <button  onClick={onClickHandler} disabled={disable}>{name}</button>
         </div>
     );
 };
