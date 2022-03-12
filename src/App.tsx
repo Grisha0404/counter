@@ -8,9 +8,11 @@ import {Button} from "./button";
 function App() {
     let [maxTitle, setMaxTitle] = useState(0)
     let [startTitle, setStartTitle] = useState(0)
+    let[error, setError] = useState(false)
 
     const clickSet = () => {
         saveState('setting', {max: maxTitle, min: startTitle})
+        setError(true)
     }
     useEffect(() => {
         const state = restoreState('setting', {max: maxTitle, min: startTitle})
@@ -33,7 +35,10 @@ function App() {
                             onChangeStartTitleHandler={onChangeStartTitleHandler}/>
                 <Button callBack={clickSet} name={'set'} disable={maxTitle <= startTitle}/>
             </div>
-                    <Counter maxTitle={maxTitle} startTitle={startTitle}/>
+            {
+                error ? <Counter maxTitle={maxTitle} startTitle={startTitle}/>: 'Pleas, set parameters!'
+            }
+
         </div>
     );
 }
