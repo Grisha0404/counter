@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {Button} from "./button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./store/store";
+import {clickIncValueAC, clickResetValueAC} from "./store/counter-reducer";
 
 type CounterType = {
     maxTitle: number
     startTitle: number
+    number:number
+    clickReset:()=>void
+    clickInc:()=>void
 }
 
-export const Counter: React.FC<CounterType> = ({maxTitle, startTitle}) => {
-    let [number, setNumber] = useState<number>(0)
-    const clickInc = () => {
-        setNumber(number + 1)
-    }
-    const clickReset = () => {
-        setNumber(startTitle)
-    }
+export const Counter: React.FC<CounterType> = ({maxTitle, startTitle,number,clickReset,clickInc}) => {
+
     return (
         <div className={'App'}>
             <div className={number === maxTitle ? 'red' : 'Number'}>{number}</div>
