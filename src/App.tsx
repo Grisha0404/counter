@@ -4,6 +4,10 @@ import {Counter} from "./counter";
 import {SetCounter} from "./SetCounter";
 import {restoreState, saveState} from "./localStorage";
 import {Button} from "./button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./store/store";
+import {clickIncValueAC, clickResetValueAC, startValueAC} from "./store/counter-reducer";
+import RecCounter from "./RecCounter";
 
 function App() {
     let [maxTitle, setMaxTitle] = useState(0)
@@ -24,9 +28,20 @@ function App() {
         setMaxTitle(JSON.parse(e.currentTarget.value))
     }
     const onChangeStartTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartTitle(JSON.parse(e.currentTarget.value))
+        startValueAC(JSON.parse(e.currentTarget.value))
     }
+    const number = useSelector<AppStateType, number>(state => state.counter.value)
+    const dispatch = useDispatch()
 
+    // let [number, setNumber] = useState<number>(0)
+    const clickInc = () => {
+        dispatch(clickIncValueAC())
+        //setNumber(number + 1)
+    }
+    const clickReset = () => {
+        dispatch(clickResetValueAC(startTitle))
+        //setNumber(startTitle)
+    }
     return (
         <div>
             <div className={'App'}>
@@ -36,8 +51,9 @@ function App() {
                 <Button callBack={clickSet} name={'set'} disable={maxTitle <= startTitle}/>
             </div>
             {
-                error ? <Counter maxTitle={maxTitle} startTitle={startTitle}/>: 'Pleas, set parameters!'
+                error ? <Counter number={number} clickInc={clickInc} clickReset={clickReset} maxTitle={maxTitle} startTitle={startTitle}/>: 'Pleas, set parameters!'
             }
+         {/*   <RecCounter />*/}
 
         </div>
     );
