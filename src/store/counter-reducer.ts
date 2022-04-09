@@ -3,7 +3,7 @@ const initialState = {
     maxTitle: 0,
     startTitle: 0
 }
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 export const counterReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
