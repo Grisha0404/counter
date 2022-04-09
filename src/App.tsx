@@ -6,32 +6,40 @@ import {restoreState, saveState} from "./localStorage";
 import {Button} from "./button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./store/store";
-import {clickIncValueAC, clickResetValueAC, startValueAC} from "./store/counter-reducer";
-import RecCounter from "./RecCounter";
+import {clickIncValueAC, clickResetValueAC, restoreStateAC, saveStateAC} from "./store/counter-reducer";
 
 function App() {
-    let [maxTitle, setMaxTitle] = useState(0)
-    let [startTitle, setStartTitle] = useState(0)
-    let[error, setError] = useState(false)
+
+    const number = useSelector<AppStateType, number>(state => state.counter.value)
+    const maxTitle = useSelector<AppStateType, number>(state => state.counter.maxTitle)
+    const startTitle = useSelector<AppStateType, number>(state => state.counter.startTitle)
+
+    const dispatch = useDispatch()
+
+    // let [maxTitle, setMaxTitle] = useState(0)
+    // let [startTitle, setStartTitle] = useState(0)
+    let [error, setError] = useState(false)
 
     const clickSet = () => {
-        saveState('setting', {max: maxTitle, min: startTitle})
+        saveState('setting', {maxTitle: maxTitle, startTitle: startTitle})
         setError(true)
     }
     useEffect(() => {
-        const state = restoreState('setting', {max: maxTitle, min: startTitle})
-        setMaxTitle(state.max)
-        setStartTitle(state.min)
+        const state = restoreState('setting', {maxTitle: maxTitle, startTitle: startTitle})
+        // setMaxTitle(state.max)
+        // setStartTitle(state.min)
+        dispatch(restoreStateAC(state.maxTitle))
+        dispatch(saveStateAC(state.startTitle))
     }, [])
 
     const onChangeMaxTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxTitle(JSON.parse(e.currentTarget.value))
+        //setMaxTitle(JSON.parse(e.currentTarget.value))
+        dispatch(restoreStateAC(JSON.parse(e.currentTarget.value)))
     }
     const onChangeStartTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        startValueAC(JSON.parse(e.currentTarget.value))
+        // setStartTitle(JSON.parse(e.currentTarget.value))
+        dispatch(saveStateAC(JSON.parse(e.currentTarget.value)))
     }
-    const number = useSelector<AppStateType, number>(state => state.counter.value)
-    const dispatch = useDispatch()
 
     // let [number, setNumber] = useState<number>(0)
     const clickInc = () => {
@@ -51,10 +59,9 @@ function App() {
                 <Button callBack={clickSet} name={'set'} disable={maxTitle <= startTitle}/>
             </div>
             {
-                error ? <Counter number={number} clickInc={clickInc} clickReset={clickReset} maxTitle={maxTitle} startTitle={startTitle}/>: 'Pleas, set parameters!'
+                error ? <Counter number={number} clickInc={clickInc} clickReset={clickReset} maxTitle={maxTitle}
+                                 startTitle={startTitle}/> : 'Pleas, set parameters!'
             }
-         {/*   <RecCounter />*/}
-
         </div>
     );
 }
