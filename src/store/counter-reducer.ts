@@ -1,5 +1,7 @@
 const initialState = {
-    value: 0
+    value: 0,
+    maxTitle: 0,
+    startTitle: 0
 }
 type InitialStateType = typeof initialState
 
@@ -13,21 +15,25 @@ export const counterReducer = (state = initialState, action: ActionType): Initia
             return {
                 ...state, value: action.value
             }
-        // case "INC-MAX-VALUE":
-        // case "INC-START-VALUE":
-        //     return {
-        //         ...state, value: action.number
-        //     }
+        case "GET_STATE":
+            return {
+                ...state, maxTitle: action.maxTitle
+            }
+        case 'SAVE_STATE':
+            return {
+                ...state, startTitle: action.startTitle
+            }
         default:
             return state
     }
 }
 
-type ActionType = clickIncValueACType | clickResetValueACType
+type ActionType = clickIncValueACType | clickResetValueACType | restoreStateACType | saveStateACType
 type clickIncValueACType = ReturnType<typeof clickIncValueAC>
 type clickResetValueACType = ReturnType<typeof clickResetValueAC>
-type startValueACType = ReturnType<typeof startValueAC>
-type maxValueACType = ReturnType<typeof maxValueAC>
+type restoreStateACType = ReturnType<typeof restoreStateAC>
+type saveStateACType = ReturnType<typeof saveStateAC>
+
 
 export const clickIncValueAC = () => {
     return {type: 'INC-VALUE'}as const
@@ -35,9 +41,15 @@ export const clickIncValueAC = () => {
 export const clickResetValueAC = (value:number) => {
     return {type: 'INC-RESET-VALUE', value}as const
 }
-export const startValueAC = (number:string) => {
-    return {type: 'INC-START-VALUE', number}
+export const restoreStateAC = (maxTitle: number) => {
+    return {
+        type: 'GET_STATE',
+        maxTitle
+    } as const
 }
-export const maxValueAC = (number:string) => {
-    return {title: 'INC-MAX-VALUE', number}
+export const saveStateAC = (startTitle: number) => {
+    return {
+        type: 'SAVE_STATE',
+        startTitle
+    } as const
 }
