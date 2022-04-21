@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./counter";
 import {SetCounter} from "./SetCounter";
@@ -13,7 +13,6 @@ function App() {
     const number = useSelector<AppStateType, number>(state => state.counter.value)
     const maxTitle = useSelector<AppStateType, number>(state => state.counter.maxTitle)
     const startTitle = useSelector<AppStateType, number>(state => state.counter.startTitle)
-
     const dispatch = useDispatch()
 
     // let [maxTitle, setMaxTitle] = useState(0)
@@ -32,14 +31,14 @@ function App() {
         dispatch(saveStateAC(state.startTitle))
     }, [])
 
-    const onChangeMaxTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeMaxTitleHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         //setMaxTitle(JSON.parse(e.currentTarget.value))
         dispatch(restoreStateAC(JSON.parse(e.currentTarget.value)))
-    }
-    const onChangeStartTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    }, [dispatch])
+    const onChangeStartTitleHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         // setStartTitle(JSON.parse(e.currentTarget.value))
         dispatch(saveStateAC(JSON.parse(e.currentTarget.value)))
-    }
+    }, [dispatch])
 
     // let [number, setNumber] = useState<number>(0)
     const clickInc = () => {
