@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, memo} from 'react';
 
 type SetCounterType = {
     maxTitle: number
@@ -7,13 +7,13 @@ type SetCounterType = {
     onChangeStartTitleHandler: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const SetCounter: React.FC<SetCounterType> = ({
+export const SetCounter: React.FC<SetCounterType> = memo(({
                                                          maxTitle,
                                                          onChangeMaxTitleHandler,
                                                          onChangeStartTitleHandler,
                                                          startTitle
                                                      }) => {
-
+    console.log('SETCOUNT')
     return (
         <div>
             <div>
@@ -26,4 +26,4 @@ export const SetCounter: React.FC<SetCounterType> = ({
             </div>
         </div>
     );
-};
+});
