@@ -13,7 +13,7 @@ type CounterType = {
 }
 
 export const Counter: React.FC<CounterType> = ({maxTitle, startTitle,number,clickReset,clickInc}) => {
-
+    console.log('COUNTER')
     return (
         <div className={'App'}>
             <div className={number === maxTitle ? 'red' : 'Number'}>{number}</div>
