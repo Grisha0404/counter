@@ -36,10 +36,10 @@ type saveStateACType = ReturnType<typeof saveStateAC>
 
 
 export const clickIncValueAC = () => {
-    return {type: 'INC-VALUE'}as const
+    return {type: 'INC-VALUE'} as const
 }
-export const clickResetValueAC = (value:number) => {
-    return {type: 'INC-RESET-VALUE', value}as const
+export const clickResetValueAC = (value: number) => {
+    return {type: 'INC-RESET-VALUE', value} as const
 }
 export const restoreStateAC = (maxTitle: number) => {
     return {
